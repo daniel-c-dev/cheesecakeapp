@@ -1,0 +1,130 @@
+<!--Daniel Co-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cheesecake Order Form</title>
+        <link rel="stylesheet" type="text/css" href="stylesheets/co22_style.css">
+        <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="javascripts/co22_javascript.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <h1>Cheesecake Order Form</h1>
+        </header>
+
+        <main>
+            <!--Cheesecake image-->
+            <figure>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Mondays_at_Il_Forno_-_Cheesecake_with_strawberry_sauce.jpg/2048px-Mondays_at_Il_Forno_-_Cheesecake_with_strawberry_sauce.jpg" alt="Cheesecake" width="128" height="128"/>
+            </figure>
+            <div class="thankyou_section">
+                <h4 class="thankyou_message"> <span id = "message1"></span></h4>
+                <h4 class="thankyou_message"> <span id = "message2"></span> </h4>
+                <p class="thankyou_message"> <span id = "message3"></span> </p>
+                <p class="thankyou_message"> <span id = "message4"></span> </p>
+                <p class="thankyou_message"> <span id = "message5"></span> </p>
+            </div>
+            <table>
+                <!--First row-->
+                <tr class="form_text">
+                    <td>Quantity</td>
+                    <td>Topping</td>
+                </tr>
+                <tr>
+                    <!--Select a quantity-->
+                    <td>
+                        <form id="quantity_form">
+                            <select id="quantity" name="quantity">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </form>
+                    </td>
+                    <!--Select a topping-->
+                    <td>
+                        <form id="topping_form">
+                            <input type = "radio" id="Plain" name="answer" value="Plain" checked>
+                            <label for="Plain">Plain</label>
+                            <br>
+                            <input type = "radio" id="Cherry" name="answer" value="Cherry">
+                            <label for="Cherry">Cherry</label>
+                            <br>
+                            <input type = "radio" id="Chocolate" name="answer" value="Chocolate">
+                            <label for="Chocolate">Chocolate</label>
+                            <br>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <!--Enter notes/special instructions-->
+                    <!--Resource: https://www.w3schools.com/tags/att_input_placeholder.asp
+                        Usage: using a placeholder to set a default text.-->
+                    <td>
+                        <label for="notes" class="form_text">Notes:</label>
+                        <form id="notes_form">
+                        <textarea id="notes" name="notes" rows="5" cols="40" placeholder="Enter any special instructions here."></textarea>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <!--Order button-->
+                    <td>
+                        <form id="order_button">
+                            <button class="orderbutton" type="button" onClick="warning();order_details();">Order</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+            <!--Total Orders Last Month-->
+            <section>
+                <div class=totalorders>
+                    <table>
+                        <tr>
+                            <td>
+                                <h3>Orders for </h3>
+                            </td>
+                            <td>
+                                <!--Resource: https://www.w3schools.com/howto/howto_css_dropdown.asp
+                                    Resource: https://www.w3schools.com/howto/howto_js_dropdown.asp
+                                    Usage: Starting a dropdown hover menu.-->
+                                <div class="dropdown">
+                                    <button class="dropbtn">Jan</button>
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <ul class="dropdown-menu">
+                                            <a href="#" id = "Jan" onClick="select_month(this.id);">Jan</a>
+                                            <a href="#" id = "Feb" onClick="select_month(this.id);">Feb</a>
+                                            <a href="#" id = "Mar" onClick="select_month(this.id);">Mar</a>
+                                            <a href="#" id = "Apr" onClick="select_month(this.id);">Apr</a>
+                                            <a href="#" id = "May" onClick="select_month(this.id);">May</a>
+                                            <a href="#" id = "Jun" onClick="select_month(this.id);">Jun</a>
+                                            <a href="#" id = "Jul" onClick="select_month(this.id);">Jul</a>
+                                            <a href="#" id = "Aug" onClick="select_month(this.id);">Aug</a>
+                                            <a href="#" id = "Sep" onClick="select_month(this.id);">Sep</a>
+                                            <a href="#" id = "Oct" onClick="select_month(this.id);">Oct</a>
+                                            <a href="#" id = "Nov" onClick="select_month(this.id);">Nov</a>
+                                            <a href="#" id = "Dec" onClick="select_month(this.id);">Dec</a>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="orderslist">
+                        <ul>
+                            <li>11 cherry</li>
+                            <li>17 chocolate</li>
+                            <li>31 plain</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    </body>
+</html>
