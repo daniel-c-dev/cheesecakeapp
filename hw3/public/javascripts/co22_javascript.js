@@ -46,4 +46,12 @@ $(document).ready(function(){
 // Usage: Changing the hover dropdown's text.
 function select_month(month) {
     $(".dropbtn").html(month);
+
+    // Issue a POST to the server requesting the orders for a particular month. 
+
+    $.post("http://localhost:3000/orders", function(data, status){
+
+        alert("Data: " + data + "\nStatus: " + status);
+    });
+
 }
