@@ -39,6 +39,12 @@ ul {
     text-align: center;
 }
 
+#myData {
+    padding-left: 0;
+    list-style-position: inside;
+    text-align: center;
+}
+
 .totalorders {
     background-color: lightgreen;
     color: white;

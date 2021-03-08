@@ -46,12 +46,27 @@ $(document).ready(function(){
 // Usage: Changing the hover dropdown's text.
 function select_month(month) {
     $(".dropbtn").html(month);
-
     // Issue a POST to the server requesting the orders for a particular month. 
+    display_data();
+}
 
-    $.post("http://localhost:3000/orders", function(data, status){
+// Resource: https://stackoverflow.com/questions/50450342/display-json-array-in-html-ul
+// Usage: Getting the parsed json objects to show up correctly on the web page
+function display_data() {
+    $.post("http://localhost:3000/orders",
+    function(data,status){
+        // Convert data to formatted string, then parse it
+        var string_data = JSON.stringify(data.cheesecakes);
+        var cheesecake_data = JSON.parse(string_data);
 
-        alert("Data: " + data + "\nStatus: " + status);
+        // Loop through data and convert it the displayed format "quantity topping"
+        var displayed_data = '';
+        for (var i = 0; i < cheesecake_data.length; i++){
+            displayed_data +='<li>' + cheesecake_data[i].quantity + " " + cheesecake_data[i].topping + '</li>';
+        }
+
+        // Empty cheesecakes from list, then display new cheesecake data in list
+        document.getElementById("myList").innerHTML = "";
+        document.getElementById("myList").innerHTML += displayed_data;
     });
-
 }

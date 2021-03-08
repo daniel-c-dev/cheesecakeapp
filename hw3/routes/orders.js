@@ -3,25 +3,19 @@
 var express = require('express');
 var router = express.Router();
 
-var cheesecake1 = {topping: "cherry", quantity: 2};
-var cheesecake2 = {topping: "plain", quantity: 6};
-var cheesecake3 = {topping: "chocolate", quantity: 3};
-
 // Construct array of objects
-let cheesecakes = [cheesecake1, cheesecake2, cheesecake3]
+let cheesecakes = [{topping: "cherry", quantity: "2"}, {topping: "plain", quantity: "6"}, {topping: "chocolate", quantity: "3"}];
 
 function orders(){
 
-/* GET orders listing. */
-router.get('/', function(req, res, next) {
-  res.json(cheesecakes);
-});
-
+// Convert data to json format and send
+// Resources: https://stackoverflow.com/questions/19696240/proper-way-to-return-json-using-node-or-express
+// Usage: setting the correct header and using stringify to send a json object
 router.post('/', function(req, res, next) {
-  res.json(cheesecakes);
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify({cheesecakes}));
 });
 }
 
-orders();
-module.exports = router;
-
+orders(); 
+module.exports = router; 
