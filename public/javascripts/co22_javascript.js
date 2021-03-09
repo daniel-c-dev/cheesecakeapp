@@ -44,29 +44,73 @@ $(document).ready(function(){
 //           text-of-a-button-using-jquery.php#:~:text=Answer%3A%20Use%20the%20
 //           jQuery%20prop,use%20the%20html()%20method.
 // Usage: Changing the hover dropdown's text.
-function select_month(month) {
+function select_month(month, num) {
     $(".dropbtn").html(month);
-    // Issue a POST to the server requesting the orders for a particular month. 
-    display_data();
+    
+    var m = "JAN";
+    switch (num) {
+        case 1:
+            m = "JAN";
+            break;
+        case 2:
+            m = "FEB";
+            break;
+        case 3:
+            m = "MAR";
+            break;
+        case 4:
+            m = "APR";
+            break;
+        case 5:
+            m = "MAY";
+            break;
+        case 6:
+            m = "JUN";
+            break;
+        case 7:
+            m = "JUL";
+            break;
+        case 8:
+            m = "AUG";
+            break;
+        case 9:
+            m = "SEP";
+            break;
+        case 10:
+            m = "OCT";
+            break;
+        case 11:
+            m = "NOV";
+            break;
+        case 12:
+            m = "DEC";
+            break;
+
+
+    }
+
+    display_data(month);
 }
 
 // Resource: https://stackoverflow.com/questions/50450342/display-json-array-in-html-ul
 // Usage: Getting the parsed json objects to show up correctly on the web page
-function display_data() {
-    $.post("http://localhost:3000/orders",
-    function(data,status){
+function display_data(month) {
+    $.post("http://localhost:3000/orders/" + month,
+    function(data){
+
         // Convert data to formatted string, then parse it
-        var string_data = JSON.stringify(data.cheesecakes);
+        var string_data = JSON.stringify(data);
         var cheesecake_data = JSON.parse(string_data);
 
         // Loop through data and convert it the displayed format "quantity topping"
         var displayed_data = '';
         for (var i = 0; i < cheesecake_data.length; i++){
-            displayed_data +='<li>' + cheesecake_data[i].quantity + " " + cheesecake_data[i].topping + '</li>';
+            displayed_data +='<li>' + cheesecake_data[i]["TOTAL"] + " " + cheesecake_data[i]["TOPPING"] + '</li>';
         }
 
         // Empty cheesecakes from list, then display new cheesecake data in list
         document.getElementById("myList").innerHTML = "";
         document.getElementById("myList").innerHTML += displayed_data;
+        
     });
 }
