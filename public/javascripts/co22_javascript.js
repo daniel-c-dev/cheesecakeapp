@@ -93,6 +93,7 @@ function select_month(month, num) {
 }
 
 // Resource: https://stackoverflow.com/questions/50450342/display-json-array-in-html-ul
+// Resource: https://stackoverflow.com/questions/10895306/how-to-access-json-object-name-value
 // Usage: Getting the parsed json objects to show up correctly on the web page
 function display_data(month) {
     $.post("http://localhost:3000/orders/" + month,
@@ -102,10 +103,16 @@ function display_data(month) {
         var string_data = JSON.stringify(data);
         var cheesecake_data = JSON.parse(string_data);
 
-        // Loop through data and convert it the displayed format "quantity topping"
+        // Create variable to store cheesecake display data
         var displayed_data = '';
-        for (var i = 0; i < cheesecake_data.length; i++){
-            displayed_data +='<li>' + cheesecake_data[i]["TOTAL"] + " " + cheesecake_data[i]["TOPPING"] + '</li>';
+
+        // Loop through data and convert it the displayed format "quantity topping"
+        if (cheesecake_data.data.length < 1){
+            displayed_data +='<li>' + 'There are no orders for this month.' + '</li>'
+        } else {
+            for (var i = 0; i < cheesecake_data.data.length; i++){
+                displayed_data +='<li>' + cheesecake_data.data[i]["TOTAL"] + " " + cheesecake_data.data[i]["TOPPING"] + '</li>';
+            }
         }
 
         // Empty cheesecakes from list, then display new cheesecake data in list
