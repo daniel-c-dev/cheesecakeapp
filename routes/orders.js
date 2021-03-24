@@ -7,7 +7,7 @@ var router = express.Router();
 /* Orders function: callback function for get/post.
 @param month: The month to retrieve data for.
 */
-function orders(req, res){
+function orders(req, res, next){
 // Calls the dbquery function and sends either an "error" or data to the server
 // Resources: https://stackoverflow.com/questions/40639589/how-do-i-return-callback-of-mysql-query-and-push-to-an-array-in-node-js
 // Usage: Setting up a callback function
@@ -26,11 +26,11 @@ function orders(req, res){
 // Resources: https://stackoverflow.com/questions/14134352/group-by-category-and-order-categories/14134495
 //            https://www.w3resource.com/sql/aggregate-functions/sum-with-group-by.php
 // Usage: grouping toppings together
-var query = "SELECT SUM(QUANTITY) AS TOTAL, TOPPING FROM ORDERS WHERE MONTH='" + req.params.month + "' GROUP BY TOPPING";
+  var query = "SELECT SUM(QUANTITY) AS TOTAL, TOPPING FROM ORDERS WHERE MONTH='" + req.params.month + "' GROUP BY TOPPING";
 
-databaseRouter.dbquery(query, function(err, result){
-  res.json({"error": err, "data": result});
-});
+  databaseRouter.dbquery(query, function(err, result){
+    res.json({"error": err, "data": result});
+  });
 }
 
 // Get data

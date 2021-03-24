@@ -33,10 +33,33 @@ function order_details()
     document.getElementById("message3").innerHTML = "Quantity: " + quantity;
     document.getElementById("message4").innerHTML = "Topping: " + topping;
     document.getElementById("message5").innerHTML = "Notes: " + notes;
+
+    //send_order(quantity, topping, notes);
+
+    var d = {quantity, topping, notes};
+
+    $.post("http://localhost:3000/neworder",
+    d, function(){
+        alert("Success.");
+    });
+}
+
+// Send a POST to the server to add new orders to the database.
+// Resource: https://stackoverflow.com/questions/6587221/send-json-data-with-jquery
+// Usage: Sending data using a post request.
+function send_order(quantity, topping, notes)
+{
+    var d = {quantity, topping, notes};
+
+    $.post("http://localhost:3000/neworder", 
+    function(){
+        alert("Success.");
+    });
 }
 
 // Hide the thank you message when the page loads.
-$(document).ready(function(){
+$(document).ready(function()
+{
     $(".thankyou_message").hide();
 });
 
@@ -44,58 +67,16 @@ $(document).ready(function(){
 //           text-of-a-button-using-jquery.php#:~:text=Answer%3A%20Use%20the%20
 //           jQuery%20prop,use%20the%20html()%20method.
 // Usage: Changing the hover dropdown's text.
-function select_month(month, num) {
+function select_month(month) {
     $(".dropbtn").html(month);
-    
-    var m = "JAN";
-    switch (num) {
-        case 1:
-            m = "JAN";
-            break;
-        case 2:
-            m = "FEB";
-            break;
-        case 3:
-            m = "MAR";
-            break;
-        case 4:
-            m = "APR";
-            break;
-        case 5:
-            m = "MAY";
-            break;
-        case 6:
-            m = "JUN";
-            break;
-        case 7:
-            m = "JUL";
-            break;
-        case 8:
-            m = "AUG";
-            break;
-        case 9:
-            m = "SEP";
-            break;
-        case 10:
-            m = "OCT";
-            break;
-        case 11:
-            m = "NOV";
-            break;
-        case 12:
-            m = "DEC";
-            break;
-
-
-    }
-
     display_data(month);
 }
 
 // Resource: https://stackoverflow.com/questions/50450342/display-json-array-in-html-ul
 // Resource: https://stackoverflow.com/questions/10895306/how-to-access-json-object-name-value
 // Usage: Getting the parsed json objects to show up correctly on the web page
-function display_data(month) {
+function display_data(month) 
+{
     $.post("http://localhost:3000/orders/" + month,
     function(data){
 
