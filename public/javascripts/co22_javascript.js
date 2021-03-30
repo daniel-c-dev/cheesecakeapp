@@ -36,12 +36,12 @@ function order_details()
 
     //send_order(quantity, topping, notes);
 
-    var d = {quantity, topping, notes};
+    /*var d = {quantity, topping, notes};
 
     $.post("http://localhost:3000/neworder",
     d, function(){
         alert("Success.");
-    });
+    });*/
 }
 
 // Send a POST to the server to add new orders to the database.
@@ -73,6 +73,7 @@ function select_month(month) {
 }
 
 // Resource: https://stackoverflow.com/questions/50450342/display-json-array-in-html-ul
+// Resource: https://stackoverflow.com/questions/10895306/how-to-access-json-object-name-value
 // Usage: Getting the parsed json objects to show up correctly on the web page
 function display_data(month) 
 {
@@ -93,7 +94,7 @@ function display_data(month)
             for (var i = 0; i < cheesecake_data.data.length; i++){
                 displayed_data +='<li>' + cheesecake_data.data[i]["TOTAL"] + " " + cheesecake_data.data[i]["TOPPING"] + '</li>';
             }
-
+        }
         // Empty cheesecakes from list, then display new cheesecake data in list
         document.getElementById("myList").innerHTML = "";
         document.getElementById("myList").innerHTML += displayed_data;
