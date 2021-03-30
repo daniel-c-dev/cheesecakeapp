@@ -49,12 +49,12 @@ function order_details()
 // Usage: Sending data using a post request.
 function send_order(quantity, topping, notes)
 {
-    //var d = {quantity, topping, notes};
+    var d = {quantity, topping, notes};
 
-    //$.post("http://localhost:3000/neworder", 
-    //function(){
-        //alert("Success.");
-    //});
+    $.post("http://localhost:3000/neworder", 
+    function(){
+        alert("Success.");
+    });
 }
 
 // Hide the thank you message when the page loads.
